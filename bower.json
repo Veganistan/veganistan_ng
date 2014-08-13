@@ -21,11 +21,9 @@
   "dependencies": {
     "lodash": "~2.4.1",
     "angular": "~1.2.x",
-    "angular-route": "~1.2.20"
+    "angular-route": "~1.2.20",
+    "angular-ui-router": "~0.2.10"
   },
   "devDependencies": {
-    "lodash": "~2.4.1",
-    "angular-route": "~1.2.20",
-    "angular-google-maps": "~1.2.0"
   }
 }
