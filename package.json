@@ -4,10 +4,15 @@
   "description": "Veganistan app frontend",
   "main": "Gruntfile.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "install": "napa"
   },
   "author": "Mathias Tervo",
   "license": "BSD-2-Clause",
+  "napa": {
+    "angular": "angular/bower-angular",
+    "angular-ui-router": "angular-ui/ui-router"
+  },
   "devDependencies": {
     "gulp-embedlr": "^0.5.2",
     "gulp-clean": "^0.3.1",
