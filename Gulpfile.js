@@ -44,6 +44,7 @@ gulp.task('watch', function() {
   gulp.watch('src/style/*.scss', ['styles-dev']);
   gulp.watch('src/**/*.html', notifyLiveReload);
   gulp.watch('src/style/*.css', notifyLiveReload);
+  gulp.watch('src/**/*.js', notifyLiveReload);
 });
 
 gulp.task('default', ['express', 'livereload', 'watch'], function() {});
