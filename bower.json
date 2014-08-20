@@ -1,0 +1,24 @@
+{
+  "name": "veganistan_ng",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Veganistan/veganistan_ng",
+  "authors": [
+    "Mathias Tervo <mathias.tervo@gmail.com>"
+  ],
+  "description": "veganistan",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+    "angular": "~1.2.22",
+    "angular-ui-router": "~0.2.10"
+  }
+}

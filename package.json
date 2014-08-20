@@ -4,8 +4,7 @@
   "description": "Veganistan app frontend",
   "main": "Gruntfile.js",
   "scripts": {
-    "test": "npm test",
-    "install": "napa"
+    "test": "npm test"
   },
   "author": "Mathias Tervo",
   "license": "BSD-2-Clause",
