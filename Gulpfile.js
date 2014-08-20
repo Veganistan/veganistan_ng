@@ -1,94 +1,49 @@
 var gulp = require('gulp'),
-  sass = require('gulp-sass'),
-  browserify = require('gulp-browserify'),
-  concat = require('gulp-concat'),
-  embedlr = require('gulp-embedlr'),
-  refresh = require('gulp-livereload'),
-  lrserver = require('tiny-lr')(),
-  express = require('express'),
-  livereload = require('connect-livereload')
-  livereloadport = 35729,
-  serverport = 5000;
- 
-//We only configure the server here and start it only when running the watch task
-var server = express();
-//Add livereload middleware before static-middleware
-server.use(livereload({
-  port: livereloadport
-}));
-server.use(express.static('./build'));
+    sass = require('gulp-ruby-sass'),
+    autoprefixer = require('gulp-autoprefixer'),
+    minifycss = require('gulp-minify-css'),
+    rename = require('gulp-rename'),
+    liveReloadPort = 35729,
+    tinylr;
 
 
-var paths = {
-    src: {
-        scripts: ['src/app/*.js', 'src/app/**/*.js'],
-        html: ['src/app/**/*.html'],
-        sass: ['src/scss/*.scss']
-    },
-    dest: {
-        rootDir: 'assets',
-        scripts:  'assets/js/',
-        css: 'assets/css/'
+gulp.task('express', function() {
+  var express = require('express');
+  var app = express();
+  app.use(require('connect-livereload')({port: liveReloadPort}));
+  app.use(express.static(__dirname));
+  app.listen(8000);
+});
+
+gulp.task('livereload', function() {
+  tinylr = require('tiny-lr')();
+  tinylr.listen(liveReloadPort);
+});
+
+function notifyLiveReload(event) {
+  var fileName = require('path').relative(__dirname, event.path);
+
+  tinylr.changed({
+    body: {
+      files: [fileName]
     }
-};
+  });
+}
 
-//Task for sass using libsass through gulp-sass
-gulp.task('sass', function(){
-  gulp.src(paths.src.sass)
-    .pipe(sass())
-    .pipe(gulp.dest(paths.dest.css))
-    .pipe(refresh(lrserver));
-});
-
-//Task for processing js with browserify
-gulp.task('browserify', function(){
-  gulp.src(paths.src.scripts)
-   .pipe(browserify())
-   .pipe(concat('app.bundle.js'))
-   .pipe(gulp.dest(paths.dest.scripts))
-   .pipe(refresh(lrserver));
-
+gulp.task('styles-dev', function() {
+      return gulp.src('src/style/*.scss')
+        .pipe(sass({ style: 'expanded' }))
+        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
+        .pipe(gulp.dest('src/style'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(minifycss())
+        .pipe(gulp.dest('src/style'));
 });
 
-//Task for moving html-files to the build-dir
-//added as a convenience to make sure this gulpfile works without much modification
-gulp.task('html', function(){
-  gulp.src(paths.src.html)
-    .pipe(gulp.dest(paths.dest.rootDir))
-    .pipe(refresh(lrserver));
-});
- 
-//Convenience task for running a one-off build
-gulp.task('build', function() {
-  gulp.run('html', 'browserify', 'sass');
-});
- 
-gulp.task('serve', function() {
-  //Set up your static fileserver, which serves files in the build dir
-  server.listen(serverport);
- 
-  //Set up your livereload server
-  lrserver.listen(lrport);
-});
- 
 gulp.task('watch', function() {
- 
-  //Add watching on sass-files
-  gulp.watch(paths.src.sass, function() {
-    gulp.run('sass');
-  });
-  
-  //Add watching on js-files
-  gulp.watch(paths.src.scripts, function() {
-    gulp.run('browserify');
-  });
- 
-  //Add watching on html-files
-  gulp.watch(paths.src.html, function () {
-    gulp.run('html');
-  });
+  gulp.watch('src/style/*.scss', ['styles-dev']);
+  gulp.watch('src/**/*.html', notifyLiveReload);
+  gulp.watch('src/style/*.css', notifyLiveReload);
 });
- 
-gulp.task('default', function () {
-  gulp.run('build', 'serve', 'watch');
-});
+
+gulp.task('default', ['styles', 'express', 'livereload', 'watch'], function() {});

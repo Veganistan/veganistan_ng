@@ -1,0 +1,18 @@
+body {
+  margin: 0 auto;
+  background: url("http://veganistan.se/sites/all/themes/veganistan_corolla/images/onestar_bkgr.png");
+}
+
+header, nav, article, footer {
+  border: 1px solid #000;
+  width: 500px;
+}
+
+nav {
+  height: 80px;
+  background: #eee;
+}
+
+article {
+  background: #fff;
+}

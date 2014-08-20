@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Veganistan</title>
+    <link rel="stylesheet" href="/static/css/mobile.css"/>
+
+
+</head>
+<body ng-app="app">
+
+    <header></header>
+    <nav id="top"></nav>
+
+    <article ui-view></article>
+
+    <a ui-sref="state1">State 1</a>
+    <a ui-sref="state2">State 2</a>
+
+    <nav id="bottom">
+        <ul>
+            <li>Sök</li>
+            <li>me!</li>
+            <li>me!</li>
+            <li>me!</li>
+            <li>Toggle map</li>
+            <li>Favoriter</li>
+        </ul>
+    </nav>
+
+    <footer></footer>
+
+    <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/lib/angular-ui-router/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="/lib/lodash/dist/lodash.min.js"></script>
+    <script type="text/javascript" src="/lib/angular-google-maps/dist/angular-google-maps.min.js"></script>
+    <script type="text/javascript" src="/app.bundle.js"></script>
+
+</body>
+</html>
