@@ -12,14 +12,13 @@
     <nav id="top">
         <a ui-sref="search">Search</a>
         <a ui-sref="result">Results</a>
-        <a ui-sref="result.detail.{{result.id}}">Detail</a>
-        <a ui-sref="result.map">Map</a>
-        <a ui-sref="result.list">List</a>
     </nav>
 
 
     <article ui-view></article>
-
+    <!-- TODO: Break out these ui-views into a separate template -->
+    <div ui-view="map"></div>
+    <div ui-view="detail"></div>
 
     <nav id="bottom">
     </nav>
@@ -30,6 +29,9 @@
 
     <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../bower_components/angular-slugify/angular-slugify.js"></script>
+    <script src="app/services.js"></script>
+    <script src="app/search.js"></script>
     <script src="app/app.js"></script>
 
 </body>

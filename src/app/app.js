@@ -6,9 +6,41 @@ function AppRun($rootScope, $state, $stateParams){
 }
 
 function AppConfig($stateProvider, $urlRouterProvider){
+
+    function templateProvider(view){
+        return 'app/tpl/location.'+view+'.tpl.html';
+    }
+
     // redirects
     $urlRouterProvider
         .otherwise('/');
+
+    $stateProvider
+        .state('location', {
+            resolve: {
+                entryService: 'entryService',
+                entry: function(entryService){
+                    return this.entryService.get();
+                }
+            },
+            url: '/location/:slug',
+            views: {
+                'map': {
+                    templateUrl: templateProvider('map'),
+                    controller: function($scope, entry){
+                        console.log("hej");
+                        $scope.entry = entry;
+                    }
+                },
+                'detail': {
+                    templateUrl: templateProvider('detail'),
+                    controller: function($scope, entry){
+                        $scope.entry = entry;
+                    }
+                }
+            }
+
+        })
 }
 
 angular.module('app', [
@@ -19,50 +51,3 @@ angular.module('app', [
     .config(['$stateProvider', '$urlRouterProvider', AppConfig]);
 
 
-function AppSearchConfig($stateProvider, $urlRouterProvider){
-
-    $stateProvider
-        // the state string corresponds to the value inside a ``ui-sref=""``
-        .state('search', {
-            // empty url means this child state will become active
-            // when its parent's url is navigated to. urls of child states are
-            // automatically appended to the urls of their parents.
-            url: '/',
-            templateUrl: 'app/tpl/search.tpl.html',
-            controller: function(){
-                console.log("search contrller")
-            }
-        })
-        .state('result', {
-            abstract: true,
-            url: '/result',
-            templateUrl: 'app/tpl/result.tpl.html'
-
-        })
-        .state('result.map', {
-            //parent: 'result',
-            url: '/map',
-            // NOTE:: Since this is not a top level state (it has a parent)
-            // this template will be inserted into the ``ui-view``
-            // of ``result.tpl.html``
-            templateUrl: 'app/tpl/result.map.tpl.html',
-            controller: function(){
-                console.log("result map contrller")
-            }
-        })
-        .state('result.list', {
-            //parent: 'result',
-            url: '/list',
-            templateUrl: 'app/tpl/result.list.tpl.html',
-            controller: function(){
-                console.log("result list contrller")
-            }
-        })
-}
-
-
-angular.module('app.search', [
-        'app',
-        'ui.router'
-    ])
-    .config(['$stateProvider', '$urlRouterProvider', AppSearchConfig]);

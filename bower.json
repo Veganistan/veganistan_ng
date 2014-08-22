@@ -15,10 +15,10 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "angular": "~1.2.22",
-    "angular-ui-router": "~0.2.10"
+    "angular-ui-router": "~0.2.10",
+    "angular-slugify": "~1.0.0"
   }
 }

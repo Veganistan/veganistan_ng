@@ -1,1 +1,26 @@
-search.tpl.html
+<p>search.tpl.html - start</p>
+
+<form method="GET" action="">
+    <select
+            name="town"
+            ng-model="form.towns"
+            ng-options="city.name for city in form.towns"
+            >
+        <option value="">-- Town --</option>
+    </select>
+    <input type="text" id="form-query" ng-model="form.query"/>
+    <button ng-click="submit(form)">Search</button>
+
+</form>
+
+<ul>
+    <li ng-repeat="item in result | orderBy: name">
+        <a ng-href="#/location/{{item.name | slugify}}"
+           ng-click="setCurrentEntry(item)">{{item.name}}</a>
+    </li>
+</ul>
+{{ submittedForm }}
+
+<hr/>
+{{result}}
+<p>search.tpl.html -end </p>
