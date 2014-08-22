@@ -1,18 +1,71 @@
+/** colors **/
+$black: #000;
+$white: #fff;
+$veganistan-green-light: #dfd86f;
+$veganistan-green-dark: #d2c929;
+
+/** dimensions **/
+$top-height: 50px;
+
+
+
 body {
   margin: 0 auto;
   background: url("http://veganistan.se/sites/all/themes/veganistan_corolla/images/onestar_bkgr.png");
 }
 
-header, nav, article, footer {
-  border: 1px solid #000;
+header, article, footer {
   width: 500px;
 }
 
+header {
+  height: $top-height;
+  background-color: $veganistan-green-dark;
+  color: #fff;
+
+  font-size: 2em;
+  a {
+    color: #fff;
+  }
+}
+
+ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 nav {
-  height: 80px;
-  background: #eee;
+
+  position: absolute;
+  top: $top-height+1;
+  left: 0;
+  height: 100%;
+  width: 200px;
+  background: $black;
+  z-index: 100;
+  color: #fff;
+
+  a {
+    color: #fff;
+  }
 }
 
 article {
   background: #fff;
+}
+
+
+h1, h2, h3, h4, p, a {
+  font-family: 'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Verdana,Geneva,sans-serif;
+}
+
+p {
+  font-size: 87.5%;
+}
+
+.left {
+  float: left;
+}
+.right {
+  float: right;
 }

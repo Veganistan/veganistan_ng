@@ -11,7 +11,7 @@ angular.module('app.services', [])
             },
             get: function(){
                 console.log("returning", JSON.parse(localStorage.getItem('entry')));
-                return localStorage.getItem('entry');
+                return JSON.parse(localStorage.getItem('entry'));
             }
         }
 

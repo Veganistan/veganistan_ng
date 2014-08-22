@@ -1,23 +1,33 @@
-entry: {{entry}}
-<pre>
-Adress:
-Ringvägen 89
-118 61 Stockholm
-Vägbeskrivning
 
-Besök deras hemsida
-Öppettider: 
-Mån-Fre 11.00-17.00
-Lör-Sön 10.30-16.00
+<h3>{{entry.name}}</h3>
+<p>{{entry.description}}</p>
 
-Telefonnummer: 
-0705 739 777
-E-postadress: 
-info@pannkakshuset.com
-Typ av ställe: Restaurang
-Utbud och service: AvhämtningUteservering
-Kollektivavtal: Ja
-Tillgänglighetsanpassad: Vet ej
+<h4>Adress</h4>
+<p>{{entry.street_address}}</p>
+<p>{{entry.postal_code}} {{entry.town}}</p>
 
-  
-</pre>
+<p>Vägbeskrivning ( to be implemented )</p>
+
+<h4>Öppettider</h4>
+<p>N/A (to be implemented)</p>
+
+
+<a href="{{entry.url}}">{{entry.url}} ( to be implemented )</a>
+
+<p>Telefonnummer: <a href="tel://{{entry.phone}}">{{entry.phone}}</a>
+
+<a href="mailto:{{entry.email}}">{{entry.email}}</a>
+
+<p>Veganskt på menyn: {{entry.vegan_on_menu}}</p>
+
+<p>Typ av ställe: {{entry.category}}</p>
+<p>Utbud och service: {{entry.service}}</p>
+<p>Kollektivavtal: {{entry.union_agreement}}</p>
+<p>Tillgänglighetsanpassad: {{entry.accessibility}}</p>
+
+<p>Betyg: {{entry.rating}} ({{entry.nof_votes}} röster)</p>
+
+
+<hr/>
+<p>DEBUG:</p>
+<p>{{entry}}</p>

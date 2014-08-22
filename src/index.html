@@ -3,25 +3,42 @@
 <head>
     <meta charset="utf-8" />
     <title>Veganistan</title>
+    <link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="style/mobile.css"/>
 </head>
 
 <body ng-app="app">
 
-    <header></header>
-    <nav id="top">
-        <a ui-sref="search">Search</a>
-        <a ui-sref="result">Results</a>
+    <header>
+        <div class="left">
+            <i class="fa fa-bars" ng-click="toggle()"> Stockholm </i>
+        </div>
+
+        <div class="right">
+            <a ui-sref="search"><i class="fa fa-search"></i></a>
+            <i class="fa fa-ellipsis-v"></i>
+        </div>
+
+    </header>
+    
+
+    <nav id="left-floater">
+        <ul>
+            <li><a ui-sref="search"><i class="fa fa-star">Mina favoriter</i></a></li>
+            <li><a ui-sref="search"><i class="fa fa-star">Topplista</i></a></li>
+            <li><a ui-sref="search"><i class="fa fa-star">Senaste inläggen</i></a></li>
+            <li><a ui-sref="search"><i class="fa fa-star">Senaste kommentarerna</i></a></li>
+            <li><a ui-sref="search"><i class="fa fa-star">Mest kommenterade</i></a></li>
+        </ul>
     </nav>
 
-
-    <article ui-view></article>
+    <article>
+        <div ui-view></div>
+        <div ui-view="map"></div>
+        <div ui-view="detail"></div>
+    </article>
     <!-- TODO: Break out these ui-views into a separate template -->
-    <div ui-view="map"></div>
-    <div ui-view="detail"></div>
 
-    <nav id="bottom">
-    </nav>
 
     <footer></footer>
 
