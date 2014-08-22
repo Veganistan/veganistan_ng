@@ -18,24 +18,21 @@ function AppConfig($stateProvider, $urlRouterProvider){
     $stateProvider
         .state('location', {
             resolve: {
-                entryService: 'entryService',
-                entry: function(entryService){
-                    return this.entryService.get();
-                }
+                entryService: 'entryService'
             },
             url: '/location/:slug',
             views: {
                 'map': {
                     templateUrl: templateProvider('map'),
-                    controller: function($scope, entry){
+                    controller: function($scope){
                         console.log("hej");
-                        $scope.entry = entry;
+                        $scope.map = "Hello";
                     }
                 },
                 'detail': {
                     templateUrl: templateProvider('detail'),
-                    controller: function($scope, entry){
-                        $scope.entry = entry;
+                    controller: function($scope){
+                        $scope.detail = "detail stuff"
                     }
                 }
             }

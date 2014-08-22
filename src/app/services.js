@@ -9,6 +9,7 @@ angular.module('app.services', [])
                 console.log("setting", _entry_);
                 this.entry = _entry_;
                 console.log("now set to", this.entry);
+                return;
             },
             get: function(){
                 console.log("returning", this.entry);

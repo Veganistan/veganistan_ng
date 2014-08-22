@@ -16,25 +16,6 @@ function AppSearchConfig($stateProvider, $urlRouterProvider){
             templateUrl: 'app/tpl/search.tpl.html',
             controller: SearchCtrl
         })
-        .state('result.map', {
-            //parent: 'result',
-            url: '/map',
-            // NOTE:: Since this is not a top level state (it has a parent)
-            // this template will be inserted into the ``ui-view``
-            // of ``result.tpl.html``
-            templateUrl: 'app/tpl/result.map.tpl.html',
-            controller: function(){
-                console.log("result map contrller")
-            }
-        })
-        .state('result.list', {
-            //parent: 'result',
-            url: '/list',
-            templateUrl: 'app/tpl/result.list.tpl.html',
-            controller: function(){
-                console.log("result list contrller")
-            }
-        })
 }
 
 function filterData(data, params){
