@@ -6,14 +6,12 @@ angular.module('app.services', [])
     .factory('entryService', function(){
         return {
             set: function(_entry_){
-                console.log("setting", _entry_);
-                this.entry = _entry_;
-                console.log("now set to", this.entry);
-                return;
+                localStorage.setItem('entry', JSON.stringify(_entry_));
+                console.log("now set to", localStorage.getItem('entry'));
             },
             get: function(){
-                console.log("returning", this.entry);
-                return this.entry;
+                console.log("returning", JSON.parse(localStorage.getItem('entry')));
+                return localStorage.getItem('entry');
             }
         }
 
