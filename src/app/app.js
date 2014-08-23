@@ -62,8 +62,7 @@ function AppConfig($stateProvider, $urlRouterProvider){
 angular.module('app', [
         'app.search',
         'app.services',
-        'ui.router',
-        'ngAnimate'
+        'ui.router'
     ])
     .run(['$rootScope', '$state', '$stateParams', AppRun])
     .config(['$stateProvider', '$urlRouterProvider', AppConfig])
