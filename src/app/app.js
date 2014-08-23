@@ -16,6 +16,22 @@ function AppConfig($stateProvider, $urlRouterProvider){
         .otherwise('/');
 
     $stateProvider
+
+        // the state string corresponds to the value inside a ``ui-sref=""``
+        .state('search', {
+            /**
+             * Inject entryService into the SearchCtrl controller
+             */
+            resolve: {
+              entryService: 'entryService'
+            },
+            // empty url means this child state will become active
+            // when its parent's url is navigated to. urls of child states are
+            // automatically appended to the urls of their parents.
+            url: '/',
+            templateUrl: 'app/tpl/search.tpl.html',
+            controller: SearchCtrl
+        })
         .state('location', {
             resolve: {
                 entryService: 'entryService',
@@ -45,9 +61,33 @@ function AppConfig($stateProvider, $urlRouterProvider){
 
 angular.module('app', [
         'app.search',
-        'ui.router'
+        'app.services',
+        'ui.router',
+        'ngAnimate'
     ])
     .run(['$rootScope', '$state', '$stateParams', AppRun])
-    .config(['$stateProvider', '$urlRouterProvider', AppConfig]);
+    .config(['$stateProvider', '$urlRouterProvider', AppConfig])
+    .factory('appState', function(){
+        // TODO: Consider dumping the app state into localstorage
+        var state = {
+            sidebarClosed: true,
+            toggleSidebar: function(){
+                this.sidebarClosed = !this.sidebarClosed;
+                return this.sidebarClosed;
+            }
+        };
 
+        return {
+            state: state
+        }
+    })
+    .controller('TopNavCtrl', ['$scope', 'appState', function($scope, appState){
+        $scope.state = appState.state;
 
+        $scope.toggleSidebar = function(){
+            return appState.state.toggleSidebar();
+        }
+    }])
+    .controller('SidebarCtrl', ['$scope', 'appState', function($scope, appState){
+        $scope.state = appState.state;
+    }]);

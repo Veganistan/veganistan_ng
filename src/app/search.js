@@ -1,22 +1,4 @@
-function AppSearchConfig($stateProvider, $urlRouterProvider){
-    $stateProvider
 
-        // the state string corresponds to the value inside a ``ui-sref=""``
-        .state('search', {
-            /**
-             * Inject entryService into the SearchCtrl controller
-             */
-            resolve: {
-              entryService: 'entryService'
-            },
-            // empty url means this child state will become active
-            // when its parent's url is navigated to. urls of child states are
-            // automatically appended to the urls of their parents.
-            url: '/',
-            templateUrl: 'app/tpl/search.tpl.html',
-            controller: SearchCtrl
-        })
-}
 
 function filterData(data, params){
     // filter by towns
@@ -65,5 +47,4 @@ function SearchCtrl($scope, $http, entryService){
 }
 
 
-angular.module('app.search', ['app', 'app.services', 'ui.router', 'slugifier'])
-    .config(['$stateProvider', '$urlRouterProvider', AppSearchConfig]);
+angular.module('app.search', ['app', 'app.services', 'ui.router', 'slugifier']);

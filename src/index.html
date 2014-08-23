@@ -9,9 +9,9 @@
 
 <body ng-app="app">
 
-    <header>
+    <header ng-controller="TopNavCtrl">
         <div class="left">
-            <i class="fa fa-bars" ng-click="toggle()"> Stockholm </i>
+            <i class="fa fa-bars" ng-click="toggleSidebar()"> Stockholm </i>
         </div>
 
         <div class="right">
@@ -20,9 +20,8 @@
         </div>
 
     </header>
-    
 
-    <nav id="left-floater">
+    <nav id="left-floater" ng-controller="SidebarCtrl" ng-hide="state.sidebarClosed">
         <ul>
             <li><a ui-sref="search"><i class="fa fa-star">Mina favoriter</i></a></li>
             <li><a ui-sref="search"><i class="fa fa-star">Topplista</i></a></li>
