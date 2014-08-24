@@ -5,11 +5,13 @@
             name="town"
             ng-model="searchParams.town"
             ng-options="city.value for city in form.towns"
+            ng-change="filterChange()"
             >
         <option value="">-- Town --</option>
     </select>
     <input type="text" id="form-query" ng-model="searchParams.query"/>
-    <button ng-click="submit(form)">Search</button>
+
+    <button ng-click="clearFilter()">Clear filter</button>
 
 </form>
 <hr/>
@@ -19,7 +21,9 @@
 </pre>
 
 <ul>
-    <li ng-repeat="item in result | filter:{town: searchParams.town.value} | orderBy: name">
+    <!-- <li ng-repeat="item in result | filter:{town: searchParams.town.value}"> -->
+    <!-- filtering is done the controller SearchCtrl -->
+    <li ng-repeat="item in result">
         <a ng-href="#/location/{{item.name | slugify}}"
            ng-click="setCurrentEntry(item)">{{item.name}}</a>
     </li>

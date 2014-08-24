@@ -1,9 +1,9 @@
-<h3>{{entry.name}}</h3>
+<h3>{{entry.name}} <i>{{entry.id}}</i></h3>
 <p>{{entry.description}}</p>
 
 <h4>Adress</h4>
 <p>{{entry.street_address}}</p>
-<p>{{entry.postal_code}} {{entry.town}}</p>
+<p>{{entry.postal_code}} {{entry.town.value}}</p>
 
 <p>Vägbeskrivning ( to be implemented )</p>
 
@@ -19,10 +19,10 @@
 
 <p>Veganskt på menyn: {{entry.vegan_on_menu}}</p>
 
-<p>Typ av ställe: {{entry.category}}</p>
-<p>Utbud och service: {{entry.service}}</p>
-<p>Kollektivavtal: {{entry.union_agreement}}</p>
-<p>Tillgänglighetsanpassad: {{entry.accessibility}}</p>
+<p>Typ av ställe: {{entry.category.value}}</p>
+<p>Utbud och service: {{entry.service.value}}</p>
+<p>Kollektivavtal: {{entry.union_agreement.value}}</p>
+<p>Tillgänglighetsanpassad: {{entry.accessibility.value}}</p>
 
 <p>Betyg: {{entry.rating}} ({{entry.nof_votes}} röster)</p>
 

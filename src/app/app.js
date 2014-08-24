@@ -25,16 +25,22 @@ function AppConfig($stateProvider, $urlRouterProvider){
             resolve: {
                 entryService: 'entryService',
                 apiData: function($http){
-                    return $http.get('/api/entries.json')
-                        .then(function(result){
-                            localStorage.setItem(
-                                'entries',
-                                JSON.stringify(result.data));
-                            return result.data;
-                        })
-                        .then(function(result){
-                            return result;
-                        });
+                    if(localStorage.getItem('entries') === null){
+                        console.log("fetching from api")
+                        return $http.get('/api/entries.json')
+                            .then(function(result){
+                                localStorage.setItem(
+                                    'entries',
+                                    JSON.stringify(result.data));
+                                return result.data;
+                            })
+                            .then(function(result){
+                                return result;
+                            });
+                    }else{
+                        console.log("fetched from localstorage");
+                        return JSON.parse(localStorage.getItem('entries'));
+                    }
                 }
             },
             // empty url means this child state will become active
@@ -59,10 +65,10 @@ function AppConfig($stateProvider, $urlRouterProvider){
                         console.log("hej", entry);
                         $scope.entry = entry;
                         $scope.map = {
-//                            center: {
-//                                latitude: entry.geodata.lat,
-//                                longitude: entry.geodata.long
-//                            },
+                            center: {
+                                latitude: entry.geodata.lat,
+                                longitude: entry.geodata.long
+                            },
                             zoom: 8
                         };
                     }
