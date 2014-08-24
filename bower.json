@@ -19,6 +19,7 @@
   "devDependencies": {
     "angular": "~1.2.22",
     "angular-ui-router": "~0.2.10",
-    "angular-slugify": "~1.0.0"
+    "angular-slugify": "~1.0.0",
+    "angular-google-maps": "~1.2.1"
   }
 }

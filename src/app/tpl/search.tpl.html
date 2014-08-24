@@ -3,24 +3,28 @@
 <form method="GET" action="">
     <select
             name="town"
-            ng-model="form.towns"
-            ng-options="city.name for city in form.towns"
+            ng-model="searchParams.town"
+            ng-options="city.value for city in form.towns"
             >
         <option value="">-- Town --</option>
     </select>
-    <input type="text" id="form-query" ng-model="form.query"/>
+    <input type="text" id="form-query" ng-model="searchParams.query"/>
     <button ng-click="submit(form)">Search</button>
 
 </form>
+<hr/>
+<pre>
+    {{searchParams.town}}
+    {{searchParams.query}}
+</pre>
 
 <ul>
-    <li ng-repeat="item in result | orderBy: name">
+    <li ng-repeat="item in result | filter:{town: searchParams.town.value} | orderBy: name">
         <a ng-href="#/location/{{item.name | slugify}}"
            ng-click="setCurrentEntry(item)">{{item.name}}</a>
     </li>
 </ul>
-{{ submittedForm }}
 
 <hr/>
-{{result}}
+{{result.entries}}
 <p>search.tpl.html -end </p>

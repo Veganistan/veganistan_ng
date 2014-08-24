@@ -23,7 +23,19 @@ function AppConfig($stateProvider, $urlRouterProvider){
              * Inject entryService into the SearchCtrl controller
              */
             resolve: {
-              entryService: 'entryService'
+                entryService: 'entryService',
+                apiData: function($http){
+                    return $http.get('/api/entries.json')
+                        .then(function(result){
+                            localStorage.setItem(
+                                'entries',
+                                JSON.stringify(result.data));
+                            return result.data;
+                        })
+                        .then(function(result){
+                            return result;
+                        });
+                }
             },
             // empty url means this child state will become active
             // when its parent's url is navigated to. urls of child states are
@@ -44,8 +56,15 @@ function AppConfig($stateProvider, $urlRouterProvider){
                 'map': {
                     templateUrl: templateProvider('map'),
                     controller: function($scope, entry){
-                        console.log("hej");
+                        console.log("hej", entry);
                         $scope.entry = entry;
+                        $scope.map = {
+//                            center: {
+//                                latitude: entry.geodata.lat,
+//                                longitude: entry.geodata.long
+//                            },
+                            zoom: 8
+                        };
                     }
                 },
                 'detail': {
@@ -62,7 +81,8 @@ function AppConfig($stateProvider, $urlRouterProvider){
 angular.module('app', [
         'app.search',
         'app.services',
-        'ui.router'
+        'ui.router',
+        'google-maps'
     ])
     .run(['$rootScope', '$state', '$stateParams', AppRun])
     .config(['$stateProvider', '$urlRouterProvider', AppConfig])

@@ -13,3 +13,4 @@ src/style/*.css
 
 # osx
 .DS_Store
+api/

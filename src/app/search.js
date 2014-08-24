@@ -1,44 +1,39 @@
 
 
 function filterData(data, params){
+    console.log("filtering", data, params);
     // filter by towns
-    return data.data.filter(function(e){
-       return e.town == "Stockholm";
+    return data.filter(function(e){
+
+       return e.town == params.town.name;
     });
 }
 
-function SearchCtrl($scope, $http, entryService){
-    // some default values
+function SearchCtrl($scope, $http, entryService, apiData){
 
+    // TODO: Fetch data from API upon app-opening
+
+    console.log(apiData.entries);
+
+    console.log(apiData.town);
     var form = {
-        towns: [
-            {id: 0, name: "Stockholm"},
-            {id: 1, name: "Malmö"},
-            {id: 2, name: "Uppsala"}
-        ],
+        towns: apiData.town,
         query: ""
     };
 
     $scope.form = form;
+    $scope.searchParams = {
+        town: '',
+        query: ''
+    }
 
+    $scope.result = apiData.entries;
     // handle the submission of form
     $scope.submit = function(form){
+        console.log($scope.searchParams);
         // filter the data upon submission since the data is already provided
         $scope.submittedForm = angular.copy(form);
-        var submittedForm = form;
-        $http.get('app/json/veganistan_data.json')
-            .then(function(data){
-                return filterData(data, submittedForm);
-            })
-            .then(function(data){
-                console.log("later", data)
-                // bind the results to the DOM
-                $scope.result = data;
-
-                // reset the form
-                $scope.form = form;
-                return data;
-            });
+        console.log("submitting");
     }
 
     $scope.setCurrentEntry = function(entry){
