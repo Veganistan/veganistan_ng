@@ -69,8 +69,16 @@ function AppConfig($stateProvider, $urlRouterProvider){
                                 latitude: entry.geodata.lat,
                                 longitude: entry.geodata.long
                             },
-                            zoom: 8
+                            zoom: 12
                         };
+                        $scope.marker = {
+                            id: entry.id,
+                            coords: {
+                                latitude: entry.geodata.lat,
+                                longitude: entry.geodata.long
+                            },
+                            options: {draggable: true}
+                        }
                     }
                 },
                 'detail': {
