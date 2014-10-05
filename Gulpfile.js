@@ -77,7 +77,10 @@ gulp.task('build-img', function() {
  * Copy font-awesome fonts
  */
 gulp.task('build-font', function() {
-    return gulp.src([path.bowerRoot+'/fontawesome/fonts/*.*', path.src+'/fonts/**/*.*'])
+    gulp.src([path.bowerRoot+'/font-awesome/css/font-awesome.css'])
+        .pipe(gulp.dest(path.build+'/style'));
+
+    return gulp.src([path.bowerRoot+'/font-awesome/fonts/*.*', path.src+'/fonts/**/*.*'])
         .pipe(gulp.dest(path.build+'/fonts'));
 });
 

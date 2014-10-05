@@ -81,7 +81,7 @@
                 // when its parent's url is navigated to. urls of child states are
                 // automatically appended to the urls of their parents.
                 url: '/',
-                templateUrl: 'app/tpl/search.tpl.html',
+                templateUrl: 'templates/app/search.tpl.html',
                 // controller is defined in ``search.js``
                 controller: 'SearchCtrl'
             })
