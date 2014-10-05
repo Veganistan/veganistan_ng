@@ -1,10 +1,12 @@
 .idea/
 
 .sass-cache/
-
+npm-debug.log
+*.map
 node_modules/
 bower_components/
 lib/
+build/
 
 
 assets/
